@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="fa">
+
+<head>
+    <meta charset="utf-8"/>
+    <title>{% block title %}{% endblock %}</title>
+    {% include 'includes/head-references.html' %}
+</head>
+<body class="{% block bodystyle %}{% endblock %}">
+
+    {% block content %}{% endblock %}
+
+    {% include 'includes/foot-references.html' %}
+</body>
+</html>

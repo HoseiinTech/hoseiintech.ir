@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}محمدحسین محمودیان | وبلاگ{% endblock %}
+
+{% block content %}
+<main class="main">
+    <div class="container gutter-top gutter-bottom">
+        <div class="row sticky-parent">
+            <!-- Sidebar -->
+            {% include 'includes/sidebar.html' %}
+
+            <!-- Content -->
+            <div class="col-12 col-md-12 col-xl-9">
+                <div class="box-outer pb-0">
+                    <!-- Menu -->
+                    {% include 'includes/navbar.html' %}
+
+                    <!-- About -->
+                    <div class="pb-0 pb-sm-2">
+                        <h1 class="title title--h1 title__separate">وبلاگ</h1>
+                    </div>
+
+                    <!-- News -->
+                    <div class="news-grid">
+                        <!-- Post -->
+                        <article class="news-item box">
+                            <div class="news-item__image-wrap">
+                                <a class="news-item__link" href="single-post.html"></a>
+                                <img class="cover lazyload" src="{% static 'images/news/news-1.jpg' %}" alt=""/>
+                            </div>
+                            <div class="news-item__caption">
+                                <div class="news-item__date"><span>طراحی</span>25 بهمن 1400</div>
+                                <h2 class="title title--h2"><a href="single-post.html">کنفرانس های طراحی در سال 1399</a>
+                                </h2>
+                                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان
+                                    گرافیک است.</p>
+                            </div>
+                        </article>
+
+                        <!-- Post -->
+                        <article class="news-item box">
+                            <div class="news-item__image-wrap">
+                                <a class="news-item__link" href="single-post.html"></a>
+                                <img class="cover lazyload" src="{% static 'images/news/news-2.jpg' %}" alt=""/>
+                            </div>
+                            <div class="news-item__caption">
+                                <div class="news-item__date"><span>طراحی</span>25 بهمن 1400</div>
+                                <h2 class="title title--h2"><a href="single-post.html">بهترین فونت هر طراح</a></h2>
+                                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان
+                                    گرافیک است.</p>
+                            </div>
+                        </article>
+
+                        <!-- Post -->
+                        <article class="news-item box">
+                            <div class="news-item__image-wrap">
+                                <a class="news-item__link" href="single-post.html"></a>
+                                <img class="cover lazyload" src="{% static 'images/news/news-3.jpg' %}" alt=""/>
+                            </div>
+                            <div class="news-item__caption">
+                                <div class="news-item__date"><span>طراحی</span>25 بهمن 1400</div>
+                                <h2 class="title title--h2"><a href="single-post.html">خلاصه طراحی 8</a></h2>
+                                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان
+                                    گرافیک است.</p>
+                            </div>
+                        </article>
+
+                        <!-- Post -->
+                        <article class="news-item box"><!-https://t.me/sabzrea ->
+                            <div class="news-item__image-wrap"><!-https://t.me/sabzrea ->
+                                <a class="news-item__link" href="single-post.html"></a>
+                                <img class="cover lazyload" src="{% static 'images/news/news-4.jpg' %}" alt=""/>
+                            </div>
+                            <div class="news-item__caption">
+                                <div class="news-item__date"><span>طراحی</span>25 بهمن 1400</div>
+                                <h2 class="title title--h2"><a href="single-post.html">طراحی در عین زیبایی</a></h2>
+                                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان
+                                    گرافیک است.</p>
+                            </div>
+                        </article>
+
+                        <!-- Post -->
+                        <article class="news-item box">
+                            <div class="news-item__image-wrap">
+                                <a class="news-item__link" href="single-post.html"></a>
+                                <img class="cover lazyload" src="{% static 'images/news/news-5.jpg' %}" alt=""/>
+                            </div>
+                            <div class="news-item__caption">
+                                <div class="news-item__date"><span>طراحی</span>25 بهمن 1400</div>
+                                <h2 class="title title--h2"><a href="single-post.html">هنر فراموش شده از فاصله</a></h2>
+                                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان
+                                    گرافیک است.</p>
+                            </div>
+                        </article>
+
+                        <!-- Post -->
+                        <article class="news-item box">
+                            <div class="news-item__image-wrap">
+                                <a class="news-item__link" href="single-post.html"></a>
+                                <img class="cover lazyload" src="{% static 'images/news/news-6.jpg' %}" alt=""/>
+                            </div>
+                            <div class="news-item__caption">
+                                <div class="news-item__date"><span>طراحی</span>25 بهمن 1400</div>
+                                <h2 class="title title--h2"><a href="single-post.html">خلاصه طراحی 7</a></h2>
+                                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان
+                                    گرافیک است.</p>
+                            </div>
+                        </article>
+                    </div> <!-- /news-grid -->
+                </div> <!-- /box-outer -->
+            </div> <!-- /col -->
+        </div> <!-- /sticky -->
+    </div> <!-- /container -->
+</main>
+
+<div class="back-to-top"></div>
+{% endblock %}

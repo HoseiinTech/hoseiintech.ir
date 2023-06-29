@@ -1,0 +1,301 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}محمدحسین محمودیان | وبسایت شخصی{% endblock %}
+
+{% block content %}
+    <main class="main">
+        <div class="container gutter-top gutter-bottom">
+            <div class="row sticky-parent">
+                <!-- Sidebar -->
+                {% include 'includes/sidebar.html' %}
+
+                <!-- Content -->
+                <div class="col-12 col-md-12 col-xl-9">
+                    <div class="box-outer">
+                        <!-- Menu -->
+                        {% include 'includes/navbar.html' %}
+
+                        <!-- About -->
+                        <div class="pb-0 pb-sm-2">
+                            <h1 class="title title--h1 title__separate">درباره من</h1>
+                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک
+                                است.
+                                چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی
+                                تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. </p>
+                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک
+                                است.
+                                چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی
+                                تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای
+                                زیادی در
+                                شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم
+                                افزارها
+                                شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان
+                                فارسی
+                                ایجاد کرد. </p>
+                        </div>
+
+                        <!-- What -->
+                        <h2 class="title title--h2 mt-3">چه کاری انجام می دهم</h2>
+                        <div class="row">
+                            <!-- Case Item -->
+                            <div class="col-12 col-lg-6">
+                                <div class="case-item box box-inner">
+                                    <img class="case-item__icon" src="{% static 'icons/icon-design.svg' %}" alt=""/>
+                                    <div>
+                                        <h3 class="title title--h3">طراحی وب سایت</h3>
+                                        <p class="case-item__caption">مدرن ترین و با کیفیت بالا طراحی شده در سطح حرفه
+                                            ای.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Case Item -->
+                            <div class="col-12 col-lg-6">
+                                <div class="case-item box box-inner">
+                                    <img class="case-item__icon" src="{% static 'icons/icon-dev.svg' %}" alt=""/>
+                                    <div>
+                                        <h3 class="title title--h3">توسعه دهنده وب</h3>
+                                        <p class="case-item__caption">با کیفیت بالا و حرفه ای توسعه سایت ها در سطح حرفه
+                                            ای.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Case Item -->
+                            <div class="col-12 col-lg-6">
+                                <div class="case-item box box-inner">
+                                    <img class="case-item__icon" src="{% static 'icons/icon-app.svg' %}" alt=""/>
+                                    <div>
+                                        <h3 class="title title--h3">برنامه های موبایل</h3>
+                                        <p class="case-item__caption">با کیفیت بالا و حرفه ای توسعه سایت ها در سطح حرفه
+                                            ای.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Case Item -->
+                            <div class="col-12 col-lg-6">
+                                <div class="case-item box box-inner">
+                                    <img class="case-item__icon" src="{% static 'icons/icon-photo.svg' %}" alt=""/>
+                                    <div>
+                                        <h3 class="title title--h3">عکاسی</h3>
+                                        <p class="case-item__caption">با کیفیت بالا و حرفه ای توسعه سایت ها در سطح حرفه
+                                            ای.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                         <!-- Testimonials -->
+                        <div class="testimonials">
+                            <h2 class="title title--h2 mt-3">نظرات مشتریان</h2>
+
+                            <div class="swiper-container js-carousel-review">
+                                <div class="swiper-wrapper">
+                                    <!-- Item review -->
+                                    <div class="swiper-slide review-item box box-inner js-open-review"
+                                         data-mfp-src="#review-1" data-effect="mfp-zoom-out">
+                                        <figure class="box box-avatar">
+                                            <img src="{% static 'images/avatar-1.png' %}" alt="Daniel Lewis">
+                                        </figure>
+                                        <h4 class="title title--h3">دنیل لویس</h4>
+                                        <p class="review-item__caption">ملیکا برای ایجاد یک هویت سازمانی استخدام شد. ما
+                                            با
+                                            کار انجام شده بسیار خوشحال شدیم.</p>
+                                    </div>
+
+                                    <!-- Item review -->
+                                    <div class="swiper-slide review-item box box-inner js-open-review"
+                                         data-mfp-src="#review-2" data-effect="mfp-zoom-out">
+                                        <figure class="box box-avatar">
+                                            <img src="{% static 'images/avatar-2.png' %}" alt="Daniel Lewis">
+                                        </figure>
+                                        <h4 class="title title--h3">جسیکا میلر</h4>
+                                        <p class="review-item__caption">به لطف مهارت ملیکا، ما طراحی هایی داریم که می
+                                            توانیم
+                                            افتخار کنیم.</p>
+                                    </div>
+
+                                    <!-- Item review -->
+                                    <div class="swiper-slide review-item box box-inner js-open-review"
+                                         data-mfp-src="#review-3" data-effect="mfp-zoom-out">
+                                        <figure class="box box-avatar">
+                                            <img src="{% static 'images/avatar-3.png' %}" alt="Daniel Lewis">
+                                        </figure>
+                                        <h4 class="title title--h3">تانیا رویز</h4>
+                                        <p class="review-item__caption">ملیکا برای ایجاد یک هویت سازمانی استخدام شد. ما
+                                            با
+                                            کار انجام شده بسیار خوشحال شدیم.</p>
+                                    </div>
+
+                                    <!-- Item review -->
+                                    <div class="swiper-slide review-item box box-inner js-open-review"
+                                         data-mfp-src="#review-4" data-effect="mfp-zoom-out">
+                                        <figure class="box box-avatar">
+                                            <img src="{% static 'images/avatar-4.png' %}" alt="Daniel Lewis">
+                                        </figure>
+                                        <h4 class="title title--h3">توماس کاسترو</h4>
+                                        <p class="review-item__caption">به لطف مهارت ملیکا، ما طراحی هایی داریم که می
+                                            توانیم
+                                            افتخار کنیم.</p>
+                                    </div>
+                                </div>
+
+                                <div class="swiper-pagination"></div>
+                            </div>
+                        </div>
+
+                         <!-- Clients -->
+                        <h2 class="title title--h2 mt-4">مشتریان</h2>
+                        <div class="swiper-container js-carousel-clients">
+                            <div class="swiper-wrapper">
+                                <!-- Item client -->
+                                <figure class="swiper-slide">
+                                    <a href="#"><img class="logo-client"
+                                                     src="{% static 'images/clients/logo-1-color.png' %}"
+                                                     alt="Logo"/></a>
+                                </figure>
+
+                                <!-- Item client -->
+                                <figure class="swiper-slide">
+                                    <a href="#"><img class="logo-client"
+                                                     src="{% static 'images/clients/logo-2-color.png' %}"
+                                                     alt="Logo"/></a>
+                                </figure>
+
+                                <!-- Item client -->
+                                <figure class="swiper-slide">
+                                    <a href="#"><img class="logo-client"
+                                                     src="{% static 'images/clients/logo-3-color.png' %}"
+                                                     alt="Logo"/></a>
+                                </figure>
+
+                                <!-- Item client -->
+                                <figure class="swiper-slide">
+                                    <a href="#"><img class="logo-client"
+                                                     src="{% static 'images/clients/logo-4-color.png' %}"
+                                                     alt="Logo"/></a>
+                                </figure>
+
+                                <!-- Item client -->
+                                <figure class="swiper-slide">
+                                    <a href="#"><img class="logo-client"
+                                                     src="{% static 'images/clients/logo-5-color.png' %}"
+                                                     alt="Logo"/></a>
+                                </figure>
+
+                                 <!-- Item client -->
+                                <figure class="swiper-slide">
+                                    <a href="#"><img class="logo-client"
+                                                     src="{% static 'images/clients/logo-6-color.png' %}"
+                                                     alt="Logo"/></a>
+                                 </figure>
+                            </div>
+
+                             <div class="swiper-pagination"></div>
+                        </div> <!-- /swiper-container -->
+                    </div> <!-- box-outer -->
+                </div> <!-- Content -->
+            </div> <!-- sticky-parent -->
+        </div> <!-- container -->
+    </main>
+
+    <div class="back-to-top"></div>
+
+     <!-- Full review 1 -->
+    <div id="review-1" class="popup mfp-hide mfp-with-anim">
+        <div class="row">
+            <div class="col-12 col-sm-2 full-rewiew-con-avatar">
+                 <figure class="box box-avatar">
+                    <img src="{% static 'images/avatar-1.png' %}" alt="Daniel Lewis">
+                 </figure>
+                <div class="review-icon-quote"></div>
+            </div>
+            <div class="col-12 col-sm-10 full-rewiew-con-text">
+                <h2 class="title title--h2 mb-1">دنیل لویس</h2>
+                <span class="review-date">25 بهمن 1400</span>
+                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و
+                    متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و
+                    کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد</p>
+                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و
+                     متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و
+                    کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد کتابهای زیادی در شصت و سه درصد گذشته حال و
+                    آینده شناخت فراوان جامعه و متخصصان را می طلبد.</p>
+            </div>
+        </div>
+    </div>
+
+     <!-- Full review 2 -->
+    <div id="review-2" class="popup mfp-hide mfp-with-anim">
+        <div class="row">
+            <div class="col-12 col-sm-2 full-rewiew-con-avatar">
+                <figure class="box box-avatar">
+                    <img src="{% static 'images/avatar-2.png' %}" alt="Daniel Lewis">
+                </figure>
+                <div class="review-icon-quote"></div>
+            </div>
+            <div class="col-12 col-sm-10 full-rewiew-con-text">
+                <h2 class="title title--h2 mb-1">جسیکا میلر</h2>
+                <span class="review-date">25 بهمن 1400</span>
+                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و
+                    متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و
+                    کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد</p>
+                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و
+                    متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و
+                    کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد کتابهای زیادی در شصت و سه درصد گذشته حال و
+                    آینده
+                    شناخت فراوان جامعه و متخصصان را می طلبد.</p>
+            </div>
+        </div>
+    </div>
+
+     <!-- Full review 3 -->
+    <div id="review-3" class="popup mfp-hide mfp-with-anim">
+        <div class="row">
+            <div class="col-12 col-sm-2 full-rewiew-con-avatar">
+                <figure class="box box-avatar">
+                    <img src="{% static 'images/avatar-3.png' %}" alt="Daniel Lewis">
+                </figure>
+                <div class="review-icon-quote"></div>
+            </div>
+            <div class="col-12 col-sm-10 full-rewiew-con-text">
+                <h2 class="title title--h2 mb-1">تانیا رویز</h2><!-https://t.me/sabzrea ->
+                <span class="review-date">25 بهمن 1400</span>
+                 <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و
+                    متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و
+                    کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد</p>
+                 <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و
+                    متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و
+                    کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد کتابهای زیادی در شصت و سه درصد گذشته حال و
+                    آینده
+                    شناخت فراوان جامعه و متخصصان را می طلبد.</p>
+            </div>
+        </div>
+    </div>
+
+     <!-- Full review 4 -->
+    <div id="review-4" class="popup mfp-hide mfp-with-anim">
+        <div class="row">
+            <div class="col-12 col-sm-2 full-rewiew-con-avatar">
+                <figure class="box box-avatar">
+                    <img src="{% static 'images/avatar-4.png' %}" alt="Daniel Lewis">
+                </figure>
+                <div class="review-icon-quote"></div>
+            </div>
+            <div class="col-12 col-sm-10 full-rewiew-con-text">
+                <h2 class="title title--h2 mb-1">توماس کاسترو</h2>
+                <span class="review-date">25 بهمن 1400</span>
+                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و
+                    متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و
+                    کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد</p>
+                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و
+                    متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و
+                    کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد کتابهای زیادی در شصت و سه درصد گذشته حال و
+                    آینده
+                    شناخت فراوان جامعه و متخصصان را می طلبد.</p>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

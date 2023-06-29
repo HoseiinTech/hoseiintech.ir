@@ -1,0 +1,10 @@
+{% load static %}
+<div class="nav-container">
+    <ul class="nav">
+        <li class="nav__item"><a {% if request.path == '/' %}class="active"{% endif %} href="{% url 'home:about' %}">درباره من</a></li>
+        <li class="nav__item"><a {% if request.path == '/resume/' %}class="active"{% endif %} href="{% url 'home:resume' %}">رزومه من</a></li>
+        <li class="nav__item"><a {% if request.path == '/portfolio/' %}class="active"{% endif %} href="{% url 'blog:portfolio' %}">نمونه کار ها</a></li>
+        <li class="nav__item"><a {% if request.path == '/blog/' %}class="active"{% endif %} href="{% url 'blog:blog' %}">وبلاگ</a></li>
+        <li class="nav__item"><a {% if request.path == '/contact/' %}class="active"{% endif %} href="{% url 'home:contact' %}">تماس با من</a></li>
+    </ul>
+</div>

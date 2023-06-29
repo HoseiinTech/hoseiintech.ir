@@ -1,0 +1,181 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}محمدحسین محمودیان | نمونه کارها{% endblock %}
+
+{% block content %}
+    <main class="main">
+        <div class="container gutter-top gutter-bottom">
+            <div class="row sticky-parent">
+                <!-- Sidebar -->
+                {% include 'includes/sidebar.html' %}
+
+                <!-- Content -->
+                <div class="col-12 col-md-12 col-xl-9">
+                    <div class="box-outer pb-0">
+                        <!-- Menu -->
+                        {% include 'includes/navbar.html' %}
+
+                        <!-- About -->
+                        <div class="pb-3">
+                            <h1 class="title title--h1 title__separate">نمونه کار ها</h1>
+                        </div>
+
+                        <!-- Filter -->
+                        <div class="select">
+                            <span class="placeholder">انتخاب دسته بندی</span>
+                            <ul class="filter">
+                                <li class="filter__item">Category</li>
+                                <li class="filter__item active" data-filter="*"><a class="filter__link active"
+                                                                                   href="#filter">همه</a></li>
+                                <li class="filter__item" data-filter=".category-design"><a class="filter__link"
+                                                                                           href="#filter">طراحی وب</a>
+                                </li>
+                                <li class="filter__item" data-filter=".category-applications"><a class="filter__link"
+                                                                                                 href="#filter">نرم
+                                    افزار</a></li>
+                                <li class="filter__item" data-filter=".category-web-development"><a class="filter__link"
+                                                                                                    href="#filter">توسعه
+                                    وب</a></li>
+                            </ul>
+                            <input type="hidden" name="changemetoo"/>
+                        </div>
+
+                        <!-- Gallery -->
+                        <div class="gallery-grid js-masonry js-filter-container">
+                            <div class="gutter-sizer"></div>
+                            <!-- Item 1 -->
+                            <div class="gallery-grid__item category-design">
+                                <a href="single-project.html">
+                                    <div class="gallery-grid__image-wrap">
+                                        <img class="gallery-grid__image cover lazyload"
+                                             src="{% static 'images/projects/project-1.jpg' %}" alt=""/>
+                                    </div>
+                                    <div class="gallery-grid__caption">
+                                        <h3 class="title gallery-grid__title">طراحی مونوبرد</h3>
+                                        <span class="gallery-grid__category">طراحی وب</span>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- Item 2 -->
+                            <div class="gallery-grid__item category-applications">
+                                <a href="single-project.html">
+                                    <div class="gallery-grid__image-wrap">
+                                        <img class="gallery-grid__image cover lazyload"
+                                             src="{% static 'images/projects/project-2.jpg' %}" alt=""/>
+                                    </div>
+                                    <div class="gallery-grid__caption">
+                                        <h3 class="title gallery-grid__title">نرم افزار گوریا</h3>
+                                        <span class="gallery-grid__category">نرم افزار</span>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- Item 3 -->
+                            <div class="gallery-grid__item category-web-development">
+                                <a href="single-project.html">
+                                    <div class="gallery-grid__image-wrap">
+                                        <img class="gallery-grid__image cover lazyload"
+                                             src="{% static 'images/projects/project-3.jpg' %}" alt=""/>
+                                    </div>
+                                    <div class="gallery-grid__caption">
+                                        <h3 class="title gallery-grid__title">توسعه راکت</h3>
+                                        <span class="gallery-grid__category">توسعه وب</span>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- Item 4 -->
+                            <div class="gallery-grid__item category-applications">
+                                <a href="single-project.html">
+                                    <div class="gallery-grid__image-wrap">
+                                        <img class="gallery-grid__image cover lazyload"
+                                             src="{% static 'images/projects/project-4.jpg' %}" alt=""/>
+                                    </div>
+                                    <div class="gallery-grid__caption">
+                                        <h3 class="title gallery-grid__title">نرم افزار میکرو</h3>
+                                        <span class="gallery-grid__category">نرم افزار</span>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- Item 5 -->
+                            <div class="gallery-grid__item category-web-development">
+                                <a href="single-project.html">
+                                    <div class="gallery-grid__image-wrap">
+                                        <img class="gallery-grid__image cover lazyload"
+                                             src="{% static 'images/projects/project-5.jpg' %}" alt=""/>
+                                    </div>
+
+                                    <div class="gallery-grid__caption">
+                                        <h3 class="title gallery-grid__title">توسعه المنتو</h3>
+                                        <span class="gallery-grid__category">توسعه وب</span>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- Item 6 -->
+                            <div class="gallery-grid__item category-design">
+                                <a href="single-project.html">
+                                    <div class="gallery-grid__image-wrap">
+                                        <img class="gallery-grid__image cover lazyload"
+                                             src="{% static 'images/projects/project-6.jpg' %}" alt=""/>
+                                    </div>
+                                    <div class="gallery-grid__caption">
+                                        <h3 class="title gallery-grid__title">طراحی الفا</h3>
+                                        <span class="gallery-grid__category">طراحی وب</span>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- Item 7 -->
+                            <div class="gallery-grid__item category-web-development">
+                                <a href="single-project.html">
+                                    <div class="gallery-grid__image-wrap">
+                                        <img class="gallery-grid__image cover lazyload"
+                                             src="{% static 'images/projects/project-7.jpg' %}" alt=""/>
+                                    </div>
+                                    <div class="gallery-grid__caption">
+                                        <h3 class="title gallery-grid__title">توسعه ولتام</h3>
+                                        <span class="gallery-grid__category">توسعه وب</span>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- Item 8 -->
+                            <div class="gallery-grid__item category-applications">
+                                <a href="single-project.html">
+                                    <div class="gallery-grid__image-wrap">
+                                        <img class="gallery-grid__image cover lazyload"
+                                             src="{% static 'images/projects/project-8.jpg' %}" alt=""/>
+                                    </div>
+                                    <div class="gallery-grid__caption">
+                                        <h3 class="title gallery-grid__title">نرم افزار اورنج</h3>
+                                        <span class="gallery-grid__category">نرم افزار</span>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- Item 9 -->
+                            <div class="gallery-grid__item category-design">
+                                <a href="single-project.html">
+                                    <div class="gallery-grid__image-wrap">
+                                        <img class="gallery-grid__image cover lazyload"
+                                             src="{% static 'images/projects/project-9.jpg' %}" alt=""/>
+                                    </div>
+                                    <div class="gallery-grid__caption">
+                                        <h3 class="title gallery-grid__title">طراحی امگا</h3>
+                                        <span class="gallery-grid__category">طراحی وب</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div> <!-- /Gallery -->
+                    </div>
+                </div> <!-- Content -->
+            </div> <!-- sticky-parent -->
+        </div> <!-- container -->
+    </main>
+
+    <div class="back-to-top"></div>
+{% endblock %}

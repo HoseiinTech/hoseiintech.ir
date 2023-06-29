@@ -1,0 +1,68 @@
+{% load static %}
+<!-- Sidebar -->
+<aside class="col-12 col-md-12 col-xl-3">
+    <div class="sidebar box-outer sticky-column">
+        <!-- My photo -->
+        <div class="sidebar__base-info">
+            <figure class="avatar-box">
+                <img src="{% static 'images/my-avatar.png' %}" alt="علی نیازی">
+            </figure>
+
+            <div class="text-xl-center">
+                <h3 class="title title--h3 sidebar__name">علی نیازی</h3>
+                <div class="badge">مدیر خلاق</div>
+            </div>
+
+            <button class="btn btn--small btn--icon-right sidebar__btn js-btn-toggle"><span>نمایش اطلاعات تماس</span><i
+                    class="feathericon-chevron-down"></i></button>
+        </div>
+
+        <div class="sidebar__additional-info js-show">
+            <div class="separation"></div>
+            <ul class="details-info">
+                <!-- Email -->
+                <li class="details-info__item">
+                    <span class="box icon-box"><i class="font-icon icon-envelope"></i></span>
+                    <div class="contacts-block__info">
+                        <span class="overhead">ایمیل</span>
+                        <a class="text-overflow" href="mailto:example@gmail.com" title="example@gmail.com">example@gmail.com</a>
+                    </div>
+                </li>
+                <!-- Phone -->
+                <li class="details-info__item">
+                    <span class="box icon-box"><i class="font-icon icon-phone"></i></span>
+                    <div class="contacts-block__info">
+                        <span class="overhead">تلفن</span>
+                        <span class="text-overflow" title="03831124">03831124</span>
+                    </div>
+                </li>
+                <!-- Birthday -->
+                <li class="details-info__item">
+                    <span class="box icon-box"><i class="font-icon icon-calendar"></i></span>
+                    <div class="contacts-block__info">
+                        <span class="overhead">تاریخ تولد</span>
+                        <span class="text-overflow" title="9 خرداد 1400">9 خرداد 1400</span>
+                    </div>
+                </li>
+                <!-- Location -->
+                <li class="details-info__item">
+                    <span class="box icon-box"><i class="font-icon icon-location"></i></span>
+                    <div class="contacts-block__info">
+                        <span class="overhead">موقعیت مکانی</span>
+                        <span class="text-overflow" title="ایران ، تهران">ایران ، تهران</span>
+                    </div>
+                </li>
+            </ul>
+            <div class="separation d-xl-none"></div>
+
+            <!-- Social -->
+            <div class="social">
+                <a class="social__link" href="https://www.facebook.com/"><i
+                        class="feathericon-facebook"></i></a>
+                <a class="social__link" href="https://www.behance.com/"><i class="feathericon-twitter"></i></a>
+                <a class="social__link" href="https://www.linkedin.com/"><i
+                        class="feathericon-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+</aside>
