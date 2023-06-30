@@ -1,14 +1,14 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
-from .forms import CustomUserCreationForm, CustomUserChangeForm
-from .models import CustomUser
+from home.forms import CustomUserCreationForm, CustomUserChangeForm
+from home import models
 
 
 class CustomUserAdmin(UserAdmin):
     add_form = CustomUserCreationForm
     form = CustomUserChangeForm
-    model = CustomUser
+    model = models.Customer
     list_display = ("username", "rule", "email", "is_staff", "is_active",)
     list_filter = ("rule", "is_staff", "is_active",)
     fieldsets = (
@@ -30,4 +30,38 @@ class CustomUserAdmin(UserAdmin):
     ordering = ("-date_joined",)
 
 
-admin.site.register(CustomUser, CustomUserAdmin)
+admin.site.register(models.CustomUser, CustomUserAdmin)
+
+
+@admin.register(models.AboutMe)
+class AboutAdmin(admin.ModelAdmin):
+    list_display = ("get_services", "get_customers", "get_comments", "status")
+    list_editable = ("status",)
+    fieldsets = (
+        (None, {"fields": ("about", "service")}),
+        ("مشتریان", {"fields": ("customer", "comment")}),
+    )
+
+
+@admin.register(models.Service)
+class ServiceAdmin(admin.ModelAdmin):
+    list_display = ("title", "status")
+    list_editable = ("status",)
+    list_filter = ("status",)
+    search_fields = ("title", "description")
+
+
+@admin.register(models.Customer)
+class CustomerAdmin(admin.ModelAdmin):
+    list_display = ("get_image", "title", "status")
+    list_editable = ("status",)
+    list_filter = ("status",)
+    search_fields = ("title",)
+
+
+@admin.register(models.CustomerComment)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ("get_image", "name", "jalali_date", "status")
+    list_editable = ("status",)
+    list_filter = ("status", "date")
+    search_fields = ("name", "text")
