@@ -10,5 +10,4 @@ def resume(request):
 
 
 def contact(request):
-    print(request.path)
     return render(request, 'home/contact.html')

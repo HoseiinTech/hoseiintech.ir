@@ -5,12 +5,16 @@
         <!-- My photo -->
         <div class="sidebar__base-info">
             <figure class="avatar-box">
-                <img src="{% static 'images/my-avatar.png' %}" alt="علی نیازی">
+                {% if admin_user.image %}
+                    <img src="{{ admin_user.image.url }}" alt="{{ admin_user.get_full_name }}">
+                {% else %}
+                    <img src="{% static 'images/my-avatar.png' %}" alt="{{ admin_user.get_full_name }}">
+                {% endif %}
             </figure>
 
             <div class="text-xl-center">
-                <h3 class="title title--h3 sidebar__name">علی نیازی</h3>
-                <div class="badge">مدیر خلاق</div>
+                <h3 class="title title--h3 sidebar__name">{{ admin_user.get_full_name }}</h3>
+                <div class="badge">{{ admin_user.rule }}</div>
             </div>
 
             <button class="btn btn--small btn--icon-right sidebar__btn js-btn-toggle"><span>نمایش اطلاعات تماس</span><i
@@ -25,7 +29,8 @@
                     <span class="box icon-box"><i class="font-icon icon-envelope"></i></span>
                     <div class="contacts-block__info">
                         <span class="overhead">ایمیل</span>
-                        <a class="text-overflow" href="mailto:example@gmail.com" title="example@gmail.com">example@gmail.com</a>
+                        <a class="text-overflow" style="font-size: xx-small" href="mailto:{{ admin_user.email }}"
+                           title="{{ admin_user.email }}">{{ admin_user.email }}</a>
                     </div>
                 </li>
                 <!-- Phone -->
@@ -33,7 +38,7 @@
                     <span class="box icon-box"><i class="font-icon icon-phone"></i></span>
                     <div class="contacts-block__info">
                         <span class="overhead">تلفن</span>
-                        <span class="text-overflow" title="03831124">03831124</span>
+                        <span class="text-overflow" title="{{ admin_user.phone }}">{{ admin_user.phone }}</span>
                     </div>
                 </li>
                 <!-- Birthday -->
@@ -49,7 +54,7 @@
                     <span class="box icon-box"><i class="font-icon icon-location"></i></span>
                     <div class="contacts-block__info">
                         <span class="overhead">موقعیت مکانی</span>
-                        <span class="text-overflow" title="ایران ، تهران">ایران ، تهران</span>
+                        <span class="text-overflow" title="{{ admin_user.location }}">{{ admin_user.location }}</span>
                     </div>
                 </li>
             </ul>
@@ -57,10 +62,10 @@
 
             <!-- Social -->
             <div class="social">
-                <a class="social__link" href="https://www.facebook.com/"><i
-                        class="feathericon-facebook"></i></a>
-                <a class="social__link" href="https://www.behance.com/"><i class="feathericon-twitter"></i></a>
-                <a class="social__link" href="https://www.linkedin.com/"><i
+                <a class="social__link" href="{{ admin_user.github }}"><i
+                        class="feathericon-github"></i></a>
+                <a class="social__link" href="{{ admin_user.twitter }}"><i class="feathericon-twitter"></i></a>
+                <a class="social__link" href="{{ admin_user.instagram }}"><i
                         class="feathericon-instagram"></i></a>
             </div>
         </div>
