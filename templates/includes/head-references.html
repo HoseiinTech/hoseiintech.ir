@@ -27,7 +27,11 @@
 <link rel="apple-touch-icon" sizes="114x114" href="{% static 'images/favicons/apple-touch-icon-114x114.png' %}">
 <link rel="apple-touch-icon" sizes="72x72" href="{% static 'images/favicons/apple-touch-icon-72x72.png' %}">
 <link rel="apple-touch-icon" sizes="57x57" href="{% static 'images/favicons/apple-touch-icon-57x57.png' %}">
-<link rel="shortcut icon" href="{% static 'images/favicons/favicon.png' %}" type="image/png">
+{% if icon_site.icon %}
+    <link rel="shortcut icon" href="{{ icon_site.icon.url }}" type="image/png">
+{% else %}
+    <link rel="shortcut icon" href="{% static 'images/favicons/favicon.png' %}" type="image/png">
+{% endif %}
 
 <!-- Styles -->
 <link rel="stylesheet" type="text/css" href="{% static 'styles/vendors/bootstrap.min.css' %}"/>

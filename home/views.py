@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import DetailView
 
-from home.models import AboutMe
+from home.models import AboutMe, Resume
 
 
 class AboutMeView(DetailView):
@@ -13,8 +13,13 @@ class AboutMeView(DetailView):
         return instance
 
 
-def resume(request):
-    return render(request, 'home/resume.html')
+class MyResumeView(DetailView):
+    context_object_name = 'my_resume'
+    template_name = 'home/resume.html'
+
+    def get_object(self, queryset=None):
+        instance = Resume.objects.filter(status=True).first()
+        return instance
 
 
 def contact(request):

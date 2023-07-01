@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'home.apps.HomeConfig',
     'blog.apps.BlogConfig',
     # ThirdParty
+    'jalali_date',
     'django_cleanup.apps.CleanupConfig',
 ]
 

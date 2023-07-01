@@ -1,9 +1,11 @@
+from decimal import Decimal
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.utils.html import format_html
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 from home.managers import CustomUserManager
-from blog.utils import jalali_converter
+from blog.utils import jalali_converter, jalali_formatted_converter
 
 RULE_CHOICES = (
     ('توسعه دهنده وب', 'توسعه دهنده وب'),
@@ -50,33 +52,19 @@ class CustomUser(AbstractUser):
 
 class AboutMe(models.Model):
     about = models.TextField(verbose_name='درباره من')
+    icon = models.FileField(upload_to='images/icon/site/', verbose_name='آیکون وبسایت', null=True, blank=True)
     service = models.ManyToManyField('Service', verbose_name='خدمات', limit_choices_to={"status": True}, blank=True)
     customer = models.ManyToManyField('Customer', verbose_name='مشتریان', limit_choices_to={"status": True}, blank=True)
     comment = models.ManyToManyField('CustomerComment', verbose_name='نظرات', limit_choices_to={"status": True},
                                      blank=True)
-    status = models.BooleanField(default=True, verbose_name='وضعیت', choices=STATUS_CHOICES, null=True, blank=True)
+    status = models.BooleanField(default=True, verbose_name='وضعیت', choices=STATUS_CHOICES)
 
     class Meta:
         verbose_name = 'درباره من'
         verbose_name_plural = 'درباره من'
 
     def __str__(self):
-        return "درباره من"
-
-    def get_services(self):
-        return ' - '.join([service.title for service in self.service.all()[:3]])
-
-    get_services.short_description = 'خدمات'
-
-    def get_customers(self):
-        return ' - '.join([customer.title for customer in self.customer.all()[:3]])
-
-    get_customers.short_description = 'مشتریان'
-
-    def get_comments(self):
-        return ' - '.join([comment.name for comment in self.comment.all()[:3]])
-
-    get_comments.short_description = 'نظرات مشتریان'
+        return f"درباره من - شماره {self.id}"
 
 
 class Service(models.Model):
@@ -138,3 +126,90 @@ class CustomerComment(models.Model):
         return jalali_converter(self.date)
 
     jalali_date.short_description = 'تاریخ نظر'
+
+
+class Resume(models.Model):
+    education = models.ManyToManyField('Education', verbose_name='تحصیلات', limit_choices_to={'status': True},
+                                       blank=True)
+    experience = models.ManyToManyField('Experience', verbose_name='تجربیات', limit_choices_to={'status': True},
+                                        blank=True)
+    skill = models.ManyToManyField('Skill', verbose_name='مهارت ها', limit_choices_to={'status': True},
+                                   blank=True)
+    status = models.BooleanField(choices=STATUS_CHOICES, default=True, verbose_name='وضعیت')
+
+    class Meta:
+        verbose_name = 'رزومه'
+        verbose_name_plural = 'رزومه من'
+
+    def __str__(self):
+        return f"رزومه من - شماره {self.id}"
+
+
+JALALIDATE_HELP = 'روی فیلد کلیک کنید، و سپس تاریخ خود را به طور فارسی انتخاب کنید'
+
+
+class Education(models.Model):
+    title = models.CharField(max_length=300, verbose_name='عنوان')
+    started_at = models.DateField(verbose_name='تاریخ شروع', help_text=JALALIDATE_HELP)
+    ended_at = models.DateField(verbose_name='تاریخ پایان', help_text=JALALIDATE_HELP)
+    description = models.TextField(verbose_name='توضیحات')
+    status = models.BooleanField(choices=STATUS_CHOICES, default=True, verbose_name='وضعیت')
+
+    class Meta:
+        verbose_name = 'تحصیلات'
+        verbose_name_plural = 'تحصیلات'
+
+    def __str__(self):
+        return self.title
+
+    def date_jalali(self):
+        started = jalali_formatted_converter(self.started_at)
+        ended = jalali_formatted_converter(self.ended_at)
+        return f"{started} - {ended}"
+
+
+class Experience(models.Model):
+    title = models.CharField(max_length=300, verbose_name='عنوان')
+    started_at = models.DateField(verbose_name='تاریخ شروع', help_text=JALALIDATE_HELP)
+    ended_at = models.DateField(verbose_name='تاریخ پایان', help_text=JALALIDATE_HELP)
+    description = models.TextField(verbose_name='توضیحات')
+    status = models.BooleanField(choices=STATUS_CHOICES, default=True, verbose_name='وضعیت')
+
+    class Meta:
+        verbose_name = 'تجربه'
+        verbose_name_plural = 'تجربیات'
+
+    def __str__(self):
+        return self.title
+
+    def date_jalali(self):
+        started = jalali_formatted_converter(self.started_at)
+        ended = jalali_formatted_converter(self.ended_at)
+        return f"{started} - {ended}"
+
+
+PERCENTAGE_VALIDATOR = [MinValueValidator(0), MaxValueValidator(100)]
+
+
+class Skill(models.Model):
+    title = models.CharField(max_length=350, verbose_name='عنوان')
+    percentage = models.DecimalField(max_digits=3, decimal_places=0, default=Decimal(0),
+                                     validators=PERCENTAGE_VALIDATOR, verbose_name='درصد مهارت')
+    status = models.BooleanField(choices=STATUS_CHOICES, default=True, verbose_name='وضعیت')
+
+    class Meta:
+        verbose_name = 'مهارت'
+        verbose_name_plural = 'مهارت ها'
+
+    def __str__(self):
+        return self.title
+
+    def skill_percentage(self):
+        return format_html(
+            f'''
+            <progress value="{self.percentage}" max="100"></progress>
+            <span style="font-weight:bold">{self.percentage}%</span>
+            ''',
+        )
+
+    skill_percentage.short_description = 'درصد مهارت'

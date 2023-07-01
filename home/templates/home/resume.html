@@ -27,90 +27,45 @@
                         <h2 class="title title--h2"><span class="box icon-box"><i
                                 class="font-icon feathericon-book-open"></i></span>تحصیلات</h2>
                         <div class="timeline">
-                            <!-- Item -->
-                            <article class="timeline__item">
-                                <h5 class="title title--h5 timeline__title">مدرسه دانشگاه هنر</h5>
-                                <span class="timeline__period">1394-1398</span>
-                                <p class="timeline__description">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت
-                                    چاپ و با استفاده از طراحان گرافیک است. </p>
-                            </article>
-
-                            <!-- Item -->
-                            <article class="timeline__item">
-                                <h5 class="title title--h5 timeline__title">آکادمی هنر نیویورک</h5>
-                                <span class="timeline__period">1392 — 1393</span>
-                                <p class="timeline__description">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت
-                                    چاپ و با استفاده از طراحان گرافیک است. </p>
-                            </article>
-
-                            <!-- Item -->
-                            <article class="timeline__item">
-                                <h5 class="title title--h5 timeline__title">دبیرستان هنر و طراحی</h5>
-                                <span class="timeline__period">1390 — 1392</span>
-                                <p class="timeline__description">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت
-                                    چاپ و با استفاده از طراحان گرافیک است. </p>
-                            </article>
+                            {% for education in my_resume.education.all %}
+                                <!-- Item -->
+                                <article class="timeline__item">
+                                    <h5 class="title title--h5 timeline__title">{{ education.title }}</h5>
+                                    <span class="timeline__period">{{ education.date_jalali }}</span>
+                                    <p class="timeline__description">{{ education.description }}</p>
+                                </article>
+                            {% empty %}
+                                <p class="timeline__description">در حال حاضر تحصیلاتی وجود ندارد</p>
+                            {% endfor %}
                         </div>
 
                         <h2 class="title title--h2"><span class="box icon-box"><i
                                 class="font-icon feathericon-briefcase"></i></span>تجربیات</h2>
                         <div class="timeline">
-                            <!-- Item -->
-                            <article class="timeline__item">
-                                <h5 class="title title--h5 timeline__title">مدیر خلاق</h5>
-                                <span class="timeline__period">1397 — اکنون</span>
-                                <p class="timeline__description">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت
-                                    چاپ و با استفاده از طراحان گرافیک است. </p>
-                            </article>
-
-                            <!-- Item -->
-                            <article class="timeline__item">
-                                <h5 class="title title--h5 timeline__title">مدیر هنری</h5>
-                                <span class="timeline__period">1395 — 1397</span>
-                                <p class="timeline__description">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت
-                                    چاپ و با استفاده از طراحان گرافیک است. </p>
-                            </article>
-
-                            <!-- Item -->
-                            <article class="timeline__item">
-                                <h5 class="title title--h5 timeline__title">طراح وب</h5>
-                                <span class="timeline__period">1390 — 1395</span>
-                                <p class="timeline__description">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت
-                                    چاپ و با استفاده از طراحان گرافیک است. </p>
-                            </article>
+                            {% for experience in my_resume.experience.all %}
+                                <!-- Item -->
+                                <article class="timeline__item">
+                                    <h5 class="title title--h5 timeline__title">{{ experience.title }}</h5>
+                                    <span class="timeline__period">{{ experience.date_jalali }}</span>
+                                    <p class="timeline__description">{{ experience.description }}</p>
+                                </article>
+                            {% endfor %}
                         </div>
 
                         <!-- Skills -->
-                        <h2 class="title title--h2 mt-3">مهارت های طراحی</h2>
+                        <h2 class="title title--h2 mt-3">مهارت ها</h2>
                         <div class="box box-inner mb-0">
-                            <!-- Web Design -->
-                            <div class="progress">
-                                <div class="progress-text"><span>طراحی وب</span> 80%</div>
-                                <div class="progress-bar"><span role="progressbar" aria-valuenow="80" aria-valuemin="0"
-                                                                aria-valuemax="100"></span></div>
-                            </div>
-
-                            <!-- Web Design -->
-                            <div class="progress">
-                                <div class="progress-text"><span>طراحی گرافیک</span> 75%</div>
-                                <div class="progress-bar"><span role="progressbar" aria-valuenow="75" aria-valuemin="0"
-                                                                aria-valuemax="100"></span></div>
-                            </div>
-
-                            <!-- Web Design -->
-                            <div class="progress">
-                                <div class="progress-text"><span>برندسازی</span> 90%</div>
-                                <div class="progress-bar"><span role="progressbar" aria-valuenow="90" aria-valuemin="0"
-                                                                aria-valuemax="100"></span></div>
-                            </div>
-
-                            <!-- Web Design -->
-                            <div class="progress">
-                                <div class="progress-text"><span>وردپرس</span> 50%</div>
-                                <div class="progress-bar"><span role="progressbar" aria-valuenow="50" aria-valuemin="0"
-                                                                aria-valuemax="100"></span></div>
-                            </div>
-
+                            {% for skill in my_resume.skill.all %}
+                                <!-- Web Design -->
+                                <div class="progress">
+                                    <div class="progress-text"><span>{{ skill.title }}</span> {{ skill.percentage }}%
+                                    </div>
+                                    <div class="progress-bar"><span role="progressbar"
+                                                                    aria-valuenow="{{ skill.percentage }}"
+                                                                    aria-valuemin="0"
+                                                                    aria-valuemax="100"></span></div>
+                                </div>
+                            {% endfor %}
                         </div>
                     </div>
                 </div> <!-- Content -->
