@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
 from jalali_date.admin import ModelAdminJalaliMixin
+from django.utils.html import format_html
 
 from home.forms import CustomUserCreationForm, CustomUserChangeForm
 from home import models
@@ -18,7 +19,7 @@ class CustomUserAdmin(UserAdmin):
         (None, {"fields": ("username", "email", "password")}),
         ("اطلاعات کاربری", {"fields": ("first_name", "last_name", "image", "location", "rule", "phone", "birth_date")}),
         ("شبکه های اجتماعی", {"fields": ("github", "twitter", "linkedin", "telegram", "instagram")}),
-        ("Permissions", {"fields": ("is_staff", "is_active", "groups", "user_permissions")}),
+        ("دسترسی ها", {"fields": ("is_staff", "is_active", "groups", "user_permissions")}),
     )
     add_fieldsets = (
         (None, {
@@ -73,6 +74,11 @@ class CustomerAdmin(admin.ModelAdmin):
     list_editable = ("status",)
     list_filter = ("status",)
     search_fields = ("title",)
+
+    @admin.display(description='لوگو')
+    def get_image(self, obj):
+        return format_html(
+            f'<img src="{obj.logo.url}" alt="{obj.title}" style="height:35px;width:35px;border-radius:3px;"')
 
 
 @admin.register(models.CustomerComment)
@@ -148,3 +154,12 @@ class SkillAdmin(admin.ModelAdmin):
     list_editable = ("status",)
 
     search_fields = ('title', "percentage")
+
+    @admin.display(description='درصد مهارت')
+    def skill_percentage(self, obj):
+        return format_html(
+            f'''
+            <progress value="{obj.percentage}" max="100"></progress>
+            <span style="font-weight:bold">{obj.percentage}%</span>
+            ''',
+        )

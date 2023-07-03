@@ -26,27 +26,19 @@
                         <div class="map" id="map"></div>
                         <h2 class="title title--h2">فرم تماس با من</h2>
 
-                        <form id="contact-form" class="contact-form" data-toggle="validator">
+                        <form method="post">
+                            {% csrf_token %}
                             <div class="row">
                                 <div class="form-group col-12 col-md-6">
-                                    <input type="text" class="input form-control" id="nameContact" name="nameContact"
-                                           placeholder="نام و نام خانوادگی" required="required" autocomplete="on"
-                                           oninvalid="setCustomValidity('لطفا نام و نام خانوادگی خود را وارد کنید.')"
-                                           onkeyup="setCustomValidity('')">
+                                    {{ form.name }}
                                     <div class="help-block with-errors"></div>
                                 </div>
                                 <div class="form-group col-12 col-md-6">
-                                    <input type="email" class="input form-control" id="emailContact" name="emailContact"
-                                           placeholder="ایمیل" required="required" autocomplete="on"
-                                           oninvalid="setCustomValidity('ایمیل نادرست است.')"
-                                           onkeyup="setCustomValidity('')">
+                                    {{ form.email }}
                                     <div class="help-block with-errors"></div>
                                 </div>
                                 <div class="form-group col-12 col-md-12">
-                                    <textarea class="textarea form-control" id="messageContact" name="messageContact"
-                                              placeholder="پیام..." rows="4" required="required"
-                                              oninvalid="setCustomValidity('لطفا پیام خود را وارد کنید.')"
-                                              onkeyup="setCustomValidity('')"></textarea>
+                                    {{ form.message }}
                                     <div class="help-block with-errors"></div>
                                 </div>
                             </div>

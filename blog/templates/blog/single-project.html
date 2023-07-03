@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ portfolio.title }} | وبسایت شخصی{% endblock %}
+
+{% block content %}
+    <!-- Scroll Indicator -->
+    <div class="scroll-line"></div>
+
+    <main class="main">
+        <div class="container gutter-top gutter-bottom">
+            <div class="row sticky-parent">
+                <!-- Sidebar -->
+                {% include 'includes/sidebar.html' %}
+
+                <!-- Content -->
+                <div class="col-12 col-md-12 col-xl-9">
+                    <div class="box-outer">
+                        <!-- Menu -->
+                        {% include 'includes/navbar.html' %}
+
+                        <!-- About -->
+                        <div class="pb-3">
+                            <h1 class="title title--h1 title__separate">نمونه کار</h1>
+                        </div>
+
+                        <!-- Project details -->
+                        <a class="btn-back" href="{% url 'blog:portfolio' %}"><i class="feathericon-arrow-right"></i>بازگشت
+                            به نمونه
+                            کار
+                            ها</a>
+
+                        <header class="header-project">
+                            <h1 class="title title--h1">{{ portfolio.title }}</h1>
+                            <div class="header-project__image-wrap">
+                                <img class="cover lazyload" src="{{ portfolio.image.url }}" alt=""/>
+                            </div>
+                        </header>
+
+                        <ul class="details-info details-info--inline">
+                            <!-- Client -->
+                            <li class="details-info__item">
+                                <span class="box icon-box"><i class="font-icon feathericon-user"></i></span>
+                                <div class="details-info__info">
+                                    <span class="overhead">مشتری</span>
+                                    {{ portfolio.customer }}
+                                </div>
+
+                            </li>
+                            <!-- Category -->
+                            <li class="details-info__item">
+                                <span class="box icon-box"><i class="font-icon feathericon-layers"></i></span>
+                                <div class="details-info__info">
+                                    <span class="overhead">دسته بندی</span>
+                                    {{ portfolio.category }}
+                                </div>
+                            </li>
+                            <!-- Date -->
+                            <li class="details-info__item">
+                                <span class="box icon-box"><i class="font-icon icon-calendar"></i></span>
+                                <div class="details-info__info">
+                                    <span class="overhead">تاریخ</span>
+                                    {{ portfolio.get_jalali_date }}
+                                </div>
+                            </li>
+                        </ul>
+
+                        <p>{{ portfolio.description|safe }}</p>
+
+                        <div class="swiper-container js-carousel-project">
+                            <div class="swiper-wrapper project-gallery">
+                                {% for image in portfolio.slider.all %}
+                                    <!-- Item -->
+                                    <figure class="swiper-slide swiper-slide-project">
+                                        <a id="first" title="برای بزرگنمایی کلیک کنید"
+                                           href="{{ image.image.url }}"
+                                           data-size="1920x1080">
+                                            <img class="lazyload" src="{{ image.image.url }}" alt=""/>
+                                        </a>
+                                    </figure>
+                                {% endfor %}
+                            </div>
+                            <div class="swiper-pagination"></div>
+                        </div> <!-- /swiper-container -->
+
+                    </div> <!-- /box-outer -->
+                </div> <!-- /Content -->
+            </div> <!-- /sticky-parent -->
+        </div> <!-- /container -->
+    </main>
+
+    <!-- PhotoSwipe -->
+    <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="pswp__bg"></div>
+
+        <div class="pswp__scroll-wrap">
+            <div class="pswp__container">
+                <div class="pswp__item"></div>
+                <div class="pswp__item"></div>
+                <div class="pswp__item"></div>
+            </div>
+
+            <div class="pswp__ui pswp__ui--hidden">
+                <div class="pswp__top-bar">
+                    <div class="pswp__counter"></div>
+                    <button class="pswp__button pswp__button--close" title="بستن (Esc)"></button>
+                    <button class="pswp__button pswp__button--fs" title="نمایش کامل"></button>
+                    <button class="pswp__button pswp__button--zoom" title="بزرگنمایی جلو/عقب"></button>
+
+                    <div class="pswp__preloader">
+                        <div class="pswp__preloader__icn">
+                            <div class="pswp__preloader__cut">
+                                <div class="pswp__preloader__donut"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                    <div class="pswp__share-tooltip"></div>
+                </div>
+
+                <button class="pswp__button pswp__button--arrow--left" title="قبلی (arrow left)"></button>
+                <button class="pswp__button pswp__button--arrow--right" title="بعدی (arrow right)"></button>
+
+                <div class="pswp__caption">
+                    <div class="pswp__caption__center"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="back-to-top"></div>
+{% endblock %}

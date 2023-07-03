@@ -22,6 +22,13 @@ STATUS_CHOICES = (
 )
 
 
+class BaseModel(models.Model):
+    status = models.BooleanField(default=True, verbose_name='وضعیت', choices=STATUS_CHOICES)
+
+    class Meta:
+        abstract = True
+
+
 class CustomUser(AbstractUser):
     image = models.ImageField(upload_to='images/profile/', verbose_name='عکس کاربر', null=True, blank=True)
     rule = models.CharField(max_length=100, choices=RULE_CHOICES, verbose_name='نقش', null=True, blank=True)
@@ -50,14 +57,13 @@ class CustomUser(AbstractUser):
         return self.username
 
 
-class AboutMe(models.Model):
+class AboutMe(BaseModel):
     about = models.TextField(verbose_name='درباره من')
     icon = models.FileField(upload_to='images/icon/site/', verbose_name='آیکون وبسایت', null=True, blank=True)
     service = models.ManyToManyField('Service', verbose_name='خدمات', limit_choices_to={"status": True}, blank=True)
     customer = models.ManyToManyField('Customer', verbose_name='مشتریان', limit_choices_to={"status": True}, blank=True)
     comment = models.ManyToManyField('CustomerComment', verbose_name='نظرات', limit_choices_to={"status": True},
                                      blank=True)
-    status = models.BooleanField(default=True, verbose_name='وضعیت', choices=STATUS_CHOICES)
 
     class Meta:
         verbose_name = 'درباره من'
@@ -67,11 +73,10 @@ class AboutMe(models.Model):
         return f"درباره من - شماره {self.id}"
 
 
-class Service(models.Model):
+class Service(BaseModel):
     title = models.CharField(max_length=200, verbose_name='عنوان')
     icon = models.ImageField(upload_to='images/icon/services/', verbose_name='آیکون', null=True, blank=True)
     description = models.TextField(verbose_name='توضیحات')
-    status = models.BooleanField(default=True, verbose_name='وضعیت', choices=STATUS_CHOICES)
 
     class Meta:
         verbose_name = 'خدمت'
@@ -81,11 +86,10 @@ class Service(models.Model):
         return f"{self.title}"
 
 
-class Customer(models.Model):
+class Customer(BaseModel):
     logo = models.ImageField(upload_to='images/icon/customers', verbose_name='لوگو')
     title = models.CharField(max_length=200, verbose_name='عنوان')
     url = models.URLField(max_length=250, verbose_name='آدرس اینترنتی', null=True, blank=True)
-    status = models.BooleanField(default=True, verbose_name='وضعیت', choices=STATUS_CHOICES)
 
     class Meta:
         verbose_name = 'مشتری'
@@ -94,20 +98,13 @@ class Customer(models.Model):
     def __str__(self):
         return self.title
 
-    def get_image(self):
-        return format_html(
-            f'<img src="{self.logo.url}" alt="{self.title}" style="height:35px;width:35px;border-radius:3px;"')
 
-    get_image.short_description = 'لوگو'
-
-
-class CustomerComment(models.Model):
+class CustomerComment(BaseModel):
     name = models.CharField(max_length=200, verbose_name='نام')
     profile = models.ImageField(upload_to='images/profile/customers/', verbose_name='عکس پروفایل')
     text = models.CharField(max_length=400, verbose_name='نظر')
     full_text = models.TextField(verbose_name='نظر کامل', null=True, blank=True)
     date = models.DateTimeField(verbose_name='تاریخ نظر')
-    status = models.BooleanField(default=True, verbose_name='وضعیت', choices=STATUS_CHOICES)
 
     class Meta:
         verbose_name = 'نظر مشتری'
@@ -128,14 +125,13 @@ class CustomerComment(models.Model):
     jalali_date.short_description = 'تاریخ نظر'
 
 
-class Resume(models.Model):
+class Resume(BaseModel):
     education = models.ManyToManyField('Education', verbose_name='تحصیلات', limit_choices_to={'status': True},
                                        blank=True)
     experience = models.ManyToManyField('Experience', verbose_name='تجربیات', limit_choices_to={'status': True},
                                         blank=True)
     skill = models.ManyToManyField('Skill', verbose_name='مهارت ها', limit_choices_to={'status': True},
                                    blank=True)
-    status = models.BooleanField(choices=STATUS_CHOICES, default=True, verbose_name='وضعیت')
 
     class Meta:
         verbose_name = 'رزومه'
@@ -148,12 +144,11 @@ class Resume(models.Model):
 JALALIDATE_HELP = 'روی فیلد کلیک کنید، و سپس تاریخ خود را به طور فارسی انتخاب کنید'
 
 
-class Education(models.Model):
+class Education(BaseModel):
     title = models.CharField(max_length=300, verbose_name='عنوان')
     started_at = models.DateField(verbose_name='تاریخ شروع', help_text=JALALIDATE_HELP)
     ended_at = models.DateField(verbose_name='تاریخ پایان', help_text=JALALIDATE_HELP)
     description = models.TextField(verbose_name='توضیحات')
-    status = models.BooleanField(choices=STATUS_CHOICES, default=True, verbose_name='وضعیت')
 
     class Meta:
         verbose_name = 'تحصیلات'
@@ -168,12 +163,11 @@ class Education(models.Model):
         return f"{started} - {ended}"
 
 
-class Experience(models.Model):
+class Experience(BaseModel):
     title = models.CharField(max_length=300, verbose_name='عنوان')
     started_at = models.DateField(verbose_name='تاریخ شروع', help_text=JALALIDATE_HELP)
     ended_at = models.DateField(verbose_name='تاریخ پایان', help_text=JALALIDATE_HELP)
     description = models.TextField(verbose_name='توضیحات')
-    status = models.BooleanField(choices=STATUS_CHOICES, default=True, verbose_name='وضعیت')
 
     class Meta:
         verbose_name = 'تجربه'
@@ -191,11 +185,10 @@ class Experience(models.Model):
 PERCENTAGE_VALIDATOR = [MinValueValidator(0), MaxValueValidator(100)]
 
 
-class Skill(models.Model):
+class Skill(BaseModel):
     title = models.CharField(max_length=350, verbose_name='عنوان')
     percentage = models.DecimalField(max_digits=3, decimal_places=0, default=Decimal(0),
                                      validators=PERCENTAGE_VALIDATOR, verbose_name='درصد مهارت')
-    status = models.BooleanField(choices=STATUS_CHOICES, default=True, verbose_name='وضعیت')
 
     class Meta:
         verbose_name = 'مهارت'
@@ -203,13 +196,3 @@ class Skill(models.Model):
 
     def __str__(self):
         return self.title
-
-    def skill_percentage(self):
-        return format_html(
-            f'''
-            <progress value="{self.percentage}" max="100"></progress>
-            <span style="font-weight:bold">{self.percentage}%</span>
-            ''',
-        )
-
-    skill_percentage.short_description = 'درصد مهارت'

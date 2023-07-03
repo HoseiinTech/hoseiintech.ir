@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     # ThirdParty
     'jalali_date',
+    'ckeditor',
     'django_cleanup.apps.CleanupConfig',
 ]
 
@@ -119,3 +120,32 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'mahmodian8713@gmail.com'
+EMAIL_HOST_PASSWORD = 'uzntpzyndpxwgdlh'
+DEFAULT_FROM_EMAIL = "mahmodian8713@gmail.com"
+
+CKEDITOR_UPLOAD_PATH = "media/ckeditor/"
+CKEDITOR_IMAGE_BACKEND = "pillow"
+CKEDITOR_BROWSE_SHOW_DIRS = True
+CKEDITOR_RESTRICT_BY_USER = True
+CKEDITOR_ALLOW_NONIMAGE_FILES = False
+CKEDITOR_CONFIGS = {
+    "default": {
+        "toolbar": "Custom",
+        "toolbar_Custom": [
+            ["Bold", "Italic", "Underline", "Strike", "Subscript", "Superscript"],
+            ["NumberedList", "BulletedList", "Blockquote"],
+            ["Link", "Unlink"],
+            ["RemoveFormat", "Source"],
+        ],
+        "allowedContent": True,
+        "height": "350px",
+        "width": "200%",
+        "removePlugins": "stylesheetparser",
+    }
+}

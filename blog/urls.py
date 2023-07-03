@@ -1,8 +1,9 @@
-from django.urls import path
+from django.urls import path, re_path
 from blog import views
 
 app_name = 'blog'
 urlpatterns = [
-    path('portfolio/', views.portfolio, name='portfolio'),
+    path('portfolio/', views.PortfolioView.as_view(), name='portfolio'),
+    re_path('portfolio/detail/(?P<slug>[-\w]+)/$', views.ProjectDetailView.as_view(), name='project-detail'),
     path('blog/', views.blog, name='blog')
 ]
