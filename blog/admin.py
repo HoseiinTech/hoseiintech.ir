@@ -34,7 +34,7 @@ class ImageSliderInline(admin.TabularInline):
 @admin.register(models.Portfolio)
 class PortfolioAdmin(admin.ModelAdmin):
     list_display = ['get_image', 'title', 'customer', 'category', 'status']
-    list_editable = ['status']
+    list_editable = ['status', 'category']
     list_filter = ['status', 'category']
     search_fields = ['title', 'category', 'description', 'customer']
     inlines = [ImageSliderInline]
@@ -43,6 +43,19 @@ class PortfolioAdmin(admin.ModelAdmin):
     )
 
     @admin.display(description='تصویر پیشنمایش')
+    def get_image(self, obj):
+        return format_html(
+            f'<img src="{obj.image.url}" style="height:40px;width:15;border-radius:3px;"')
+
+
+@admin.register(models.Article)
+class ArticleAdmin(admin.ModelAdmin):
+    list_display = ('get_image', 'title', 'get_jalali_date', 'category', 'status')
+    list_filter = ('status', 'category')
+    list_editable = ('status', 'category')
+    search_fields = ('title', 'short_description', 'description', 'category')
+
+    @admin.display(description='تصویر')
     def get_image(self, obj):
         return format_html(
             f'<img src="{obj.image.url}" style="height:40px;width:15;border-radius:3px;"')

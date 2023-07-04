@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load hitcount_tags %}
+
+{% block title %}{{ article.title }} | جزئیات مقاله{% endblock %}
+
+{% block content %}
+    <!-- Scroll Indicator -->
+    <div class="scroll-line"></div>
+
+    <main class="main">
+        <div class="container gutter-top gutter-bottom">
+            <div class="row sticky-parent">
+                <!-- Sidebar -->
+                {% include 'includes/sidebar.html' %}
+
+                <!-- Content -->
+                <div class="col-12 col-md-12 col-xl-9">
+                    <div class="box-outer">
+                        <!-- Menu -->
+                        {% include 'includes/navbar.html' %}
+
+                        <!-- About -->
+                        <div class="pb-0 pb-sm-2">
+                            <h2 class="title title--h1 title__separate">وبلاگ</h2>
+                        </div>
+
+                        <!-- Post -->
+                        <div class="pb-3">
+                            <header class="header-post">
+                                <h1 class="title title--h1">{{ article.title }}</h1>
+                                <div class="caption-post">
+                                    <p>{{ article.short_description }}</p>
+                                </div>
+                                <div class="header-post__image-wrap">
+                                    <img class="cover lazyload" src="{{ article.image.url }}" alt=""/>
+                                </div>
+                            </header>
+                            <ul class="details-info details-info--inline">
+                                <!-- Category -->
+                                <li class="details-info__item">
+                                    <span class="box icon-box"><i class="font-icon feathericon-layers"></i></span>
+                                    <div class="details-info__info">
+                                        <span class="overhead">دسته بندی</span>
+                                        {{ article.category }}
+                                    </div>
+                                </li>
+                                <!-- Date -->
+                                <li class="details-info__item">
+                                    <span class="box icon-box"><i class="font-icon icon-calendar"></i></span>
+                                    <div class="details-info__info">
+                                        <span class="overhead">تاریخ</span>
+                                        {{ article.get_jalali_date }}
+                                    </div>
+                                </li>
+                                <!-- View -->
+                                <li class="details-info__item">
+                                    <span class="box icon-box"><i class="font-icon icon-user"></i></span>
+                                    <div class="details-info__info">
+                                        <span class="overhead">بازدید</span>
+                                        {% get_hit_count for article %}
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="caption-post">
+                                {{ article.description|safe }}
+                            </div>
+                            <footer class="footer-post">
+                                <a class="footer-post__share" href="{{ admin_user.instagram }}"><i
+                                        class="font-icon icon-instagram"></i><span>اینستاگرام</span></a>
+                                <a class="footer-post__share" href="{{ admin_user.twitter }}"><i
+                                        class="font-icon icon-twitter"></i><span>توییتر</span></a>
+                                <a class="footer-post__share" href="{{ admin_user.github }}"><i
+                                        class="font-icon icon-github"></i><span>گیتهاب</span></a>
+                            </footer>
+                        </div>
+                    </div> <!-- /box-outer -->
+                </div> <!-- /col -->
+            </div> <!-- /sticky -->
+        </div> <!-- container -->
+    </main>
+
+    <div class="back-to-top"></div>
+{% endblock %}

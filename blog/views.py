@@ -1,6 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404
 from django.views.generic import DetailView, ListView
-from blog.models import Portfolio, Category
+
+from blog.models import Portfolio, Article
+from hitcount.views import HitCountDetailView
 
 
 class PortfolioView(ListView):
@@ -20,5 +22,22 @@ class ProjectDetailView(DetailView):
         return project
 
 
-def blog(request):
-    return render(request, 'blog/blog.html')
+class BlogListView(ListView):
+    template_name = 'blog/blog.html'
+    context_object_name = 'articles'
+    paginate_by = 4
+
+    def get_queryset(self):
+        articles = Article.objects.filter(status=True)
+        return articles
+
+
+class ArticleDetailView(HitCountDetailView):
+    context_object_name = 'article'
+    template_name = 'blog/single-post.html'
+    count_hit = True
+
+    def get_object(self, queryset=None):
+        slug = self.kwargs.get('slug')
+        article = get_object_or_404(Article.objects.filter(status=True), slug=slug)
+        return article

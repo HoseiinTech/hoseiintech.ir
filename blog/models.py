@@ -12,7 +12,7 @@ STATUS_CHOICES = (
 
 
 class BaseModel(models.Model):
-    created_at = models.DateField(auto_now_add=True, verbose_name='تاریخ انتشار')
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='تاریخ انتشار')
     status = models.BooleanField(default=True, verbose_name='وضعیت', choices=STATUS_CHOICES)
 
     class Meta:
@@ -23,8 +23,7 @@ class Portfolio(BaseModel):
     image = models.ImageField(upload_to='images/portfolio/', verbose_name='تصویر پیشنمایش')
     title = models.CharField(max_length=500, verbose_name='عنوان')
     customer = models.CharField(max_length=300, verbose_name='مشتری')
-    category = models.ForeignKey('Category', on_delete=models.CASCADE, related_name='portfolio',
-                                 verbose_name='دسته بندی')
+    category = models.ForeignKey('Category', on_delete=models.CASCADE, verbose_name='دسته بندی')
     description = RichTextField(verbose_name='توضیحات')
     slider = models.ManyToManyField('ImageSlider', verbose_name='تصاویر')
     slug = models.SlugField(unique=True, null=True, editable=False, allow_unicode=True)
@@ -67,3 +66,32 @@ class Category(BaseModel):
 
     def __str__(self):
         return self.name
+
+
+class Article(BaseModel):
+    title = models.CharField(max_length=500, verbose_name='عنوان')
+    image = models.ImageField(upload_to='images/articles/', verbose_name='تصویر')
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name='دسته بندی')
+    short_description = models.TextField(verbose_name='خلاصه مقاله')
+    description = RichTextField(verbose_name='توضیحات')
+    slug = models.SlugField(unique=True, null=True, editable=False, allow_unicode=True)
+
+    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+        self.slug = slugify(self.title, allow_unicode=True)
+        super(Article, self).save()
+
+    def get_absolute_url(self):
+        return reverse('blog:blog-detail', args=[self.slug])
+
+    class Meta:
+        verbose_name = 'مقاله'
+        verbose_name_plural = 'مقالات'
+        ordering = ('-created_at',)
+
+    def __str__(self):
+        return f"{self.title} - {self.category}"
+
+    def get_jalali_date(self):
+        return jalali_converter(self.created_at)
+
+    get_jalali_date.short_description = 'تاریخ انتشار'

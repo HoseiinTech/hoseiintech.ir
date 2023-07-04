@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     # ThirdParty
     'jalali_date',
     'ckeditor',
+    'hitcount',
     'django_cleanup.apps.CleanupConfig',
 ]
 
@@ -129,26 +130,3 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'mahmodian8713@gmail.com'
 EMAIL_HOST_PASSWORD = 'fjbhmgyddzrwhpbp'
-
-# Ckeditor Settings
-
-CKEDITOR_UPLOAD_PATH = "media/ckeditor/"
-CKEDITOR_IMAGE_BACKEND = "pillow"
-CKEDITOR_BROWSE_SHOW_DIRS = True
-CKEDITOR_RESTRICT_BY_USER = True
-CKEDITOR_ALLOW_NONIMAGE_FILES = False
-CKEDITOR_CONFIGS = {
-    "default": {
-        "toolbar": "Custom",
-        "toolbar_Custom": [
-            ["Bold", "Italic", "Underline", "Strike", "Subscript", "Superscript"],
-            ["NumberedList", "BulletedList", "Blockquote"],
-            ["Link", "Unlink"],
-            ["RemoveFormat", "Source"],
-        ],
-        "allowedContent": True,
-        "height": "350px",
-        "width": "200%",
-        "removePlugins": "stylesheetparser",
-    }
-}
