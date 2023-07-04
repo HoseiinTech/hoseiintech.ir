@@ -1,7 +1,4 @@
-from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.core.mail import EmailMessage, send_mail
-from django.conf import settings
 from django.views.generic import DetailView, FormView
 
 from home.models import AboutMe, Resume
@@ -26,20 +23,12 @@ class MyResumeView(DetailView):
         return instance
 
 
-class ContactView(FormView):
-    template_name = 'home/contact.html'
+class ContactFormView(FormView):
+    template_name = "home/contact.html"
     form_class = ContactForm
-    success_url = reverse_lazy("home:about")
+    success_url = reverse_lazy('home:contact')
 
     def form_valid(self, form):
-        name = form.cleaned_data.get("name")
-        from_email = form.cleaned_data.get("email")
-        message = form.cleaned_data.get("message")
-        send_mail(
-            f"New contact form submission from {name}",
-            message,
-            from_email,
-            [settings.DEFAULT_FROM_EMAIL],
-            fail_silently=False
-        )
+        # This method is called when valid form data has been POSTed.
+        form.send_email()
         return super().form_valid(form)

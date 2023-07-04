@@ -1,5 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django import forms
+from django.core.mail import EmailMessage
 
 from home.models import CustomUser
 
@@ -50,3 +51,20 @@ class ContactForm(forms.Form):
             "oninvalid": "setCustomValidity('لطفا پیام خود را وارد کنید.')",
             "onkeyup": "setCustomValidity('')",
         }))
+
+    def send_email(self):
+        name = self.cleaned_data.get('name')
+        email = self.cleaned_data.get('email')
+        message = self.cleaned_data.get('message')
+        EmailMessage(
+            f"پیام از طرف {name} (hoseiintech.ir)",  # subject
+            f"""
+            {message}
+            ------------------
+            این پیام با ایمیل {email} ارسال شده است.
+            """,  # message
+            email,  # from email
+            ['mahmodian8713@gmail.com'],  # to email
+            reply_to=[email],
+        ).send()
+
