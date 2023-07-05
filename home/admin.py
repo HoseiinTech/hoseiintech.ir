@@ -9,7 +9,8 @@ from home import models
 from blog.utils import jalali_converter
 
 
-class CustomUserAdmin(UserAdmin):
+@admin.register(models.CustomUser)
+class CustomUserAdmin(ModelAdminJalaliMixin, UserAdmin):
     add_form = CustomUserCreationForm
     form = CustomUserChangeForm
     model = models.Customer
@@ -32,9 +33,6 @@ class CustomUserAdmin(UserAdmin):
     )
     search_fields = ("username", "rule", "first_name", "last_name")
     ordering = ("-date_joined",)
-
-
-admin.site.register(models.CustomUser, CustomUserAdmin)
 
 
 @admin.register(models.AboutMe)

@@ -56,6 +56,9 @@ class CustomUser(AbstractUser):
             return self.get_full_name()
         return self.username
 
+    def get_jalali_birth(self):
+        return jalali_converter(self.birth_date)
+
 
 class AboutMe(BaseModel):
     about = models.TextField(verbose_name='درباره من')
