@@ -10,4 +10,4 @@ python manage.py collectstatic
 python manage.py makemigrations
 python manage.py runserver # and see in 127.0.0.1:8000
 ```
-# Thanks a lot XD, 
+# Thanks a lot XD
